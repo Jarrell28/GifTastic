@@ -15,6 +15,8 @@ var URL = "https://api.giphy.com/v1/gifs/search?q=" + query + "&limit=" + limit 
 
 $("#topics").on("click", ".badge", function () {
 
+    $("#topic-gifs").empty();
+
     query = $(this).attr("data-topic");
     URL = "https://api.giphy.com/v1/gifs/search?q=" + query + "&limit=" + limit + "&rating=" + rating + "&api_key=" + API_KEY;
 
@@ -23,9 +25,13 @@ $("#topics").on("click", ".badge", function () {
         type: "GET"
     }).then(function (response) {
         console.log(response);
-        var image = response.data[0].images.fixed_height.url;
 
-        $("#topic-gifs").append("<img src='" + image + "' alt='' class='img-thumbnail'>");
+        response.data.forEach(function (data) {
+            var image = data.images.fixed_height.url;
+
+            $("#topic-gifs").append("<img src='" + image + "' alt='' class='img-thumbnail'>");
+        })
+
     })
 })
 
