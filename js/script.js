@@ -5,8 +5,6 @@ topics.forEach(function (topic) {
 });
 
 
-
-
 var API_KEY = "AEcrIDQZBfcf8ogKoXMtc4w1sI0H8imE";
 var limit = "10";
 var query = "dogs";
@@ -33,5 +31,15 @@ $("#topics").on("click", ".badge", function () {
         })
 
     })
+})
+
+$("#submit-topic").on("click", function (e) {
+    e.preventDefault();
+
+    topics.push($("#add-topic").val().trim());
+
+    topics.forEach(function (topic) {
+        $("#topics").append("<span class='badge badge-pill badge-info' data-topic='" + topic + "'>" + topic + "</span>");
+    });
 })
 

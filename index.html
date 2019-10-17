@@ -14,7 +14,24 @@
 <body>
 
     <div id="topics"></div>
-    <div id="topic-gifs"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8">
+                <div id="topic-gifs"></div>
+            </div>
+
+            <div class="col-sm-4">
+                <form>
+                    <div class="form-group">
+                        <label for="add-topic">Add a topic</label>
+                        <input type="text" class="form-control" id="add-topic" placeholder="Enter topic">
+                        <input type="submit" id="submit-topic">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
