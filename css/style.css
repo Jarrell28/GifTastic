@@ -1,0 +1,13 @@
+#topic-gifs {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#topic-gifs div{
+    margin: 10px;
+}
+
+#topics {
+    margin: 30px 10px;
+}
+

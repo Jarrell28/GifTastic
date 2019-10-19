@@ -33,7 +33,7 @@ $("#submit-topic").on("click", function (e) {
         $("#topics").empty();
 
         topics.forEach(function (topic) {
-            $("#topics").append("<a class='badge badge badge-warning d-inline-block m-1' data-topic='" + topic + "'>" + topic + "</a>");
+            $("#topics").append("<a href='#' class='badge badge badge-warning d-inline-block m-1' data-topic='" + topic + "'>" + topic + "</a>");
         });
     }
 })
@@ -67,7 +67,7 @@ function displayGifs(query) {
             var animatedImage = data.images.fixed_height.url;
             var gifRating = data.rating;
 
-            $("#topic-gifs").append("<div><p class='bg-warning p-2'>Rating: " + gifRating + "</p><img class='gifs' src='" + stillImage + "' data-state='still' data-animated='" + animatedImage + "' data-still='" + stillImage + "' alt='' class= 'img-thumbnail' ></div > ");
+            $("#topic-gifs").append("<div><p class='bg-warning p-2'>Rating: " + gifRating + "</p><img class='gifs' src='" + stillImage + "' data-state='still' data-animated='" + animatedImage + "' data-still='" + stillImage + "' alt='' class= 'img-thumbnail' ></div> ");
         })
 
     })
