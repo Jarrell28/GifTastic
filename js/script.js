@@ -13,25 +13,15 @@ var URL = "https://api.giphy.com/v1/gifs/search?q=" + query + "&limit=" + limit 
 
 $("#topics").on("click", ".badge", function () {
 
-    $("#topic-gifs").empty();
-
     query = $(this).attr("data-topic");
-    URL = "https://api.giphy.com/v1/gifs/search?q=" + query + "&limit=" + limit + "&rating=" + rating + "&api_key=" + API_KEY;
 
-    $.ajax({
-        url: URL,
-        type: "GET"
-    }).then(function (response) {
-        console.log(response);
-
-        response.data.forEach(function (data) {
-            var image = data.images.fixed_height.url;
-
-            $("#topic-gifs").append("<img src='" + image + "' alt='' class='img-thumbnail'>");
-        })
-
-    })
+    displayGifs(query);
 })
+
+$("#limit").on("change", function () {
+    limit = $(this).val();
+    displayGifs(query);
+});
 
 $("#submit-topic").on("click", function (e) {
     e.preventDefault();
@@ -43,3 +33,25 @@ $("#submit-topic").on("click", function (e) {
     });
 })
 
+function displayGifs(query) {
+    $("#topic-gifs").empty();
+
+    URL = "https://api.giphy.com/v1/gifs/search?q=" + query +
+        "&limit=" + limit + "&rating=" + rating + "&api_key=" + API_KEY;
+
+    $.ajax({
+        url: URL,
+        type: "GET"
+    }).then(function (response) {
+        console.log(response);
+
+        response.data.forEach(function (data) {
+            var stillImage = data.images.fixed_height_still.url;
+            var animatedImage = data.images.fixed_height.url;
+            var gifRating = data.rating;
+
+            $("#topic-gifs").append("<div><p class='bg-warning p-2'>Rating: " + gifRating + "</p><img class='gifs' src='" + stillImage + "' data-state='still' data-animated='" + animatedImage + "' data-still='" + stillImage + "' alt='' class= 'img-thumbnail' ></div > ");
+        })
+
+    })
+}
