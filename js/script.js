@@ -1,13 +1,13 @@
-var topics = ["dogs", "cats", "fish", "bird"];
+var topics = ["Martin Lawrence", "Dave Chappelle", "Jim Carrey", "Bernie Mac", "Kevin Hart", "Eddie Murphy", "Lavell Crawford", "Chris Rock", "Bill Burr"];
 
 topics.forEach(function (topic) {
-    $("#topics").append("<span class='badge badge-pill badge-info' data-topic='" + topic + "'>" + topic + "</span>");
+    $("#topics").append("<a href='#' class='badge badge-warning d-inline-block m-1 ' data-topic='" + topic + "'>" + topic + "</a>");
 });
 
 
 var API_KEY = "AEcrIDQZBfcf8ogKoXMtc4w1sI0H8imE";
 var limit = "10";
-var query = "dogs";
+var query = "";
 var rating = "";
 var URL = "https://api.giphy.com/v1/gifs/search?q=" + query + "&limit=" + limit + "&rating=" + rating + "&api_key=" + API_KEY;
 
@@ -26,12 +26,29 @@ $("#limit").on("change", function () {
 $("#submit-topic").on("click", function (e) {
     e.preventDefault();
 
-    topics.push($("#add-topic").val().trim());
+    if ($("#add-topic").val() != "" && !topics.includes($("#add-topic").val())) {
 
-    topics.forEach(function (topic) {
-        $("#topics").append("<span class='badge badge-pill badge-info' data-topic='" + topic + "'>" + topic + "</span>");
-    });
+        topics.push($("#add-topic").val().trim());
+
+        $("#topics").empty();
+
+        topics.forEach(function (topic) {
+            $("#topics").append("<a class='badge badge badge-warning d-inline-block m-1' data-topic='" + topic + "'>" + topic + "</a>");
+        });
+    }
 })
+
+$("#topic-gifs").on("click", ".gifs", function () {
+    if ($(this).data("state") === "still") {
+        $(this).attr("src", $(this).data("animated"));
+        $(this).data("state", "animated");
+    } else {
+        $(this).attr("src", $(this).data("still"));
+        $(this).data("state", "still");
+    }
+
+
+});
 
 function displayGifs(query) {
     $("#topic-gifs").empty();
