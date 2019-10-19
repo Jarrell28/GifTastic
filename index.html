@@ -13,7 +13,9 @@
 
 <body>
 
-    <div id="topics"></div>
+    <div class="container-fluid">
+        <div id="topics"></div>
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-8">
@@ -25,7 +27,16 @@
                     <div class="form-group">
                         <label for="add-topic">Add a topic</label>
                         <input type="text" class="form-control" id="add-topic" placeholder="Enter topic">
-                        <input type="submit" id="submit-topic">
+                        <input type="submit" id="submit-topic" class="btn btn-warning mt-2">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="add-topic">Set Gif Limit</label>
+                        <input type="number" class="form-control" id="limit" placeholder="10" value="10">
+                    </div>
+
+                    <div class="form-group" id="ratings">
+
                     </div>
                 </form>
             </div>
